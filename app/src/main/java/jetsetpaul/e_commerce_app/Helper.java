@@ -20,7 +20,7 @@ public class Helper extends SQLiteOpenHelper {
     }
 
     private static Helper INSTANCE;
-    public static final String[] SEARCHED_COLUMNS = {DataEntryProduct.COLUMN_TITLE};
+    public static final String[] SEARCHED_COLUMNS = {DataEntryProduct.COLUMN_TITLE, DataEntryProduct.COLUMN_ARTIST, DataEntryProduct.COLUMN_DESCRIPTION};
 
     public static synchronized Helper getInstance(Context context) {
         if (INSTANCE == null)
@@ -142,21 +142,32 @@ public class Helper extends SQLiteOpenHelper {
         }
         return productDetail;
     }
-    public Cursor searchProducts(String query){
+    public ArrayList<Product> searchProducts(String query){
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(DataEntryProduct.TABLE_NAME, // a. table
                 //b will be array of columns
-                SEARCHED_COLUMNS, // b. column names
-                DataEntryProduct.COLUMN_TITLE + " LIKE ?", // c. selections
-                new String[]{query + "%"}, // d. selections args
+                null, // b. column names
+                DataEntryProduct.COLUMN_TITLE + " LIKE ?" + " OR " + DataEntryProduct.COLUMN_ARTIST + " LIKE ?" + " OR " + DataEntryProduct.COLUMN_DESCRIPTION + " LIKE ?",// c. selections
+                new String[]{query + "%", query + "%", query + "%"}, // d. selections args
                 null, // e. group by
                 null, // f. having
                 null, // g. order by
                 null); // h. limit
-
-        return cursor;
+        cursor.moveToFirst();
+        List<Product> resultItems = new ArrayList<Product>();
+        while(!cursor.isAfterLast()){
+            resultItems.add(new Product(cursor.getString(cursor.getColumnIndex(DataEntryProduct.COLUMN_TITLE)),
+                    cursor.getString(cursor.getColumnIndex(DataEntryProduct.COLUMN_ARTIST)),
+                    cursor.getString(cursor.getColumnIndex(DataEntryProduct.COLUMN_CATEGORY)),
+                    cursor.getString(cursor.getColumnIndex(DataEntryProduct.COLUMN_DESCRIPTION)),
+                    cursor.getString(cursor.getColumnIndex(DataEntryProduct.COLUMN_PRICE)),
+                    cursor.getInt(cursor.getColumnIndex(DataEntryProduct.COLUMN_IMAGE_ID))));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return (ArrayList<Product>) resultItems;
     }
 }
 

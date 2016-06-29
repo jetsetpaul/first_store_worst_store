@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,6 +15,7 @@ import java.util.List;
  */
 public class Recycler_View_Adapter extends RecyclerView.Adapter<View_Holder> {
     List<Product> list;
+    ArrayList<Product> results;
     Context context;
     View_Holder.IMyViewHolderClicks listener;
 
@@ -21,6 +23,7 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<View_Holder> {
         list = product;
         this.listener = listener;
     }
+
     @Override
     public View_Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         //Inflate the layout, initialize the View Holder
@@ -61,6 +64,10 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<View_Holder> {
         list.remove(position);
         notifyItemRemoved(position);
     }
-    //TODO add method to create new list
+    public void switchList(List<Product> newList){
+        this.list = newList;
+        notifyDataSetChanged();
+    }
+
 }
 
