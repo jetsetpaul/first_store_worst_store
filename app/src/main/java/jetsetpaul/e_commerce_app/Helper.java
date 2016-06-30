@@ -142,19 +142,15 @@ public class Helper extends SQLiteOpenHelper {
         }
         return productDetail;
     }
-    public ArrayList<Product> searchProducts(String query){
+    public ArrayList<Product> searchProducts(String userQuery){
 
         SQLiteDatabase db = this.getReadableDatabase();
+        // Building query using INNER JOIN keyword
+        String query = "SELECT * FROM PRODUCT INNER JOIN BAND ON PRODUCT.ARTIST = BAND.ARTIST WHERE BAND.LOCATION  LIKE '%" + userQuery
+                + "%' OR PRODUCT.TITLE LIKE '%" + userQuery
+                +"%' OR PRODUCT.ARTIST LIKE '%" + userQuery + "%'";
 
-        Cursor cursor = db.query(DataEntryProduct.TABLE_NAME, // a. table
-                //b will be array of columns
-                null, // b. column names
-                DataEntryProduct.COLUMN_TITLE + " LIKE ?" + " OR " + DataEntryProduct.COLUMN_ARTIST + " LIKE ?" + " OR " + DataEntryProduct.COLUMN_DESCRIPTION + " LIKE ?",// c. selections
-                new String[]{query + "%", query + "%", query + "%"}, // d. selections args
-                null, // e. group by
-                null, // f. having
-                null, // g. order by
-                null); // h. limit
+        Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
         List<Product> resultItems = new ArrayList<Product>();
         while(!cursor.isAfterLast()){

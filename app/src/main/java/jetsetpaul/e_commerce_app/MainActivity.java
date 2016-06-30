@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.CursorAdapter;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onMenuItemActionCollapse(MenuItem item){
                         Log.d("TAG", "this was run when we closed it");
                         product = helper.getInstance(MainActivity.this).getAllProduct();
-                        Toast.makeText(MainActivity.this, "It's getting called", Toast.LENGTH_SHORT).show();
                         adapter.switchList(product);
                         mRecyclerView.setAdapter(adapter);
                         return true;
