@@ -46,5 +46,8 @@ public class Product implements Serializable {
     public int getImageId() {
         return imageId;
     }
+    public String toString(){
+        return title + " " + description + " " + price;
+    }
 
 }

@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         };
         // set up toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("The music store");
+        toolbar.setTitle("First Store Worst Store");
         toolbar.setSubtitle("music, merch, and more!");
         toolbar.setTitleTextColor(-1);
         toolbar.setSubtitleTextColor(-1);
@@ -103,10 +103,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.browse:
-                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
-                this.startActivity(intent);
-                return true;
+            case R.id.cart:
+                Intent intent1 = new Intent(MainActivity.this, CartList.class);
+                    this.startActivity(intent1);
             default:
                 return super.onOptionsItemSelected(item);
         }

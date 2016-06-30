@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    android:id="@+id/cardView"
+<android.support.v7.widget.CardView android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/activity_vertical_margin"
     android:clickable="true"
     app:cardCornerRadius="@dimen/activity_vertical_margin"
     app:cardElevation="@dimen/activity_vertical_margin"
+    android.support.v7.cardview:cardBackgroundColor="?attr/colorPrimaryDark"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android.support.v7.cardview="http://schemas.android.com/tools">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimaryDark">
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"
@@ -26,6 +28,7 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/imageView"
         android:text="Title"
+        android:textColor="#ffffff"
         android:textSize="20sp" />
     <TextView
         android:id="@+id/artist"
@@ -33,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
         android:layout_toRightOf="@+id/imageView"
+        android:textColor="#ffffff"
         android:text="Artist"
         />
 
@@ -42,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/artist"
         android:layout_toRightOf="@+id/imageView"
+        android:textColor="#ffffff"
         android:text="Description" />
     <TextView
         android:id="@+id/price"
@@ -49,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/description"
         android:layout_toRightOf="@id/imageView"
+        android:textColor="#ffffff"
         android:text="Price"/>
 
 </RelativeLayout>

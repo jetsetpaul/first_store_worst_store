@@ -15,7 +15,7 @@ public class Cart {
     private Cart(){
         products = new ArrayList<>();
     }
-    private static Cart getInstance(){
+    public static Cart getInstance(){
         if(cart == null)
             cart = new Cart();
         return cart;

@@ -10,6 +10,7 @@ import android.util.Log;
 public class DetailActivity extends AppCompatActivity {
     public static final String EXTRA_PRODUCT = "product";
     public static final String NEW_EXTRA = "product2";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,12 +22,16 @@ public class DetailActivity extends AppCompatActivity {
             //set the text in my fragment
             Product product = (Product) i.getSerializableExtra(NEW_EXTRA);
             Fragment newFragment = new DetailFragment();
+
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.detail_fragment, newFragment);
             transaction.commit();
             ((DetailFragment) newFragment).setProductTitle(product.title);
+            ((DetailFragment) newFragment).setProductArtist(product.artist);
             ((DetailFragment) newFragment).setProductDescription(product.description);
+            ((DetailFragment) newFragment).setProductCost(product.price);
             ((DetailFragment) newFragment).setProductImage(product.imageId);
+            ((DetailFragment) newFragment).setProduct(product);
         }
     }
 }
