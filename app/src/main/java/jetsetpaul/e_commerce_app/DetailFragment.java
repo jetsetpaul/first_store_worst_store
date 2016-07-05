@@ -1,5 +1,6 @@
 package jetsetpaul.e_commerce_app;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,12 +16,15 @@ import android.widget.Toast;
  * Created by pauljoiner on 6/27/16.
  */
 public class DetailFragment extends Fragment {
+    MediaPlayer mMediaPlayer;
     private String productTitle;
     private String artist;
     private String description;
     private String price;
     private Product product;
     private Button addButton;
+    private Button playButton;
+    private Button pauseButton;
     private int image;
     @Nullable
     @Override
@@ -63,6 +67,31 @@ public class DetailFragment extends Fragment {
         itemCost.setText(price);
         ImageView itemImage = (ImageView) getView().findViewById(R.id.fragmentImage);
         itemImage.setImageResource(image);
+        playButton = (Button) getView().findViewById(R.id.play);
+        pauseButton = (Button) getView().findViewById(R.id.pause);
+
+        if(!(product.media == null)) {
+            int resID = getResources().getIdentifier(product.media, "raw", getContext().getPackageName());
+            mMediaPlayer = MediaPlayer.create(getContext(), resID);
+        }
+
+        if(!(product.media == null)){
+            playButton.setVisibility(View.VISIBLE);
+            pauseButton.setVisibility(View.VISIBLE);
+        }
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMediaPlayer.start();
+            }
+        });
+        pauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMediaPlayer.pause();
+            }
+        });
+
         addButton = (Button) getView().findViewById(R.id.button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override

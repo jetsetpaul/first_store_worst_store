@@ -125,17 +125,19 @@ public class MainActivity extends AppCompatActivity {
             protected Void doInBackground(Void... params) {
                 Helper helper = Helper.getInstance(MainActivity.this);
                 helper.cleanDatabase();
-                Product product1 = new Product("FTWT item", "First Thought Worst Thought", "music", "ftwt item description.", "$5", R.drawable.ftwt1);
-                Product product2 = new Product("Ftwt item 2", "First Thought Worst Thought", "music", "ftwt item2 description ", "$5", R.drawable.ftwt2);
-                Product product3 = new Product("ftwt merch", "First Thought Worst Thought", "clothing", "ftwt merch description", "$10", R.drawable.ftwt_merch1);
-                Product product4 = new Product("luca item 1", "Luca", "music", "luca item1 description", "$5", R.drawable.luca1);
-                Product product5 = new Product("luca merch1", "Luca", "clothing", "luca merch1 description", "$10", R.drawable.luca_shirt1);
-                Product product6 = new Product("luca merch2", "Luca", "clothing", "luca merch2 item description ", "$10", R.drawable.luca_shirt2);
-                Product product7 = new Product("civeta dei item", "Civeta Dei", "music", "Beautiful thinking", "$5", R.drawable.civetadei1);
-                Product product8 = new Product("mutant love single", "Mutant Love", "music", "radiation..description", "$1", R.drawable.mutantlove1);
-                Product product9 = new Product("bear on bear single", "Bear on Bear", "music", "full grown single", "$1", R.drawable.bear_on_bear_fullgrown);
-                Product product10 = new Product("odd folks album", "Odd Folks", "music", "monica description", "$5", R.drawable.odd_folks_album);
+                Product product0 = new Product("zdsca single", "First Thought Worst Thought", "music", "Single off upcoming album", "$1", R.drawable.zdsca, "zdsca");
+                Product product1 = new Product("Shangri-La EP", "First Thought Worst Thought", "music", "EP recorded in Elijah's bedroom", "$5", R.drawable.ftwt1, "shangri_la");
+                Product product2 = new Product("Princess demos", "First Thought Worst Thought", "music", "Demo's recorded in Joel's living room", "$5", R.drawable.ftwt2, null);
+                Product product3 = new Product("'Booze' t-shirt", "First Thought Worst Thought", "clothing", "Do you like booze? Wear it! You'll be the talk of the town", "$10", R.drawable.ftwt_merch1, null);
+                Product product4 = new Product("When It Comes to You, I Do Things the Hard Way", "Luca", "music", "full-length album by Luca", "$5", R.drawable.luca1, null);
+                Product product5 = new Product("Jellyfish(?) t-shirt", "Luca", "clothing", "Is that a jellyfish? Wear it!", "$10", R.drawable.luca_shirt1, null);
+                Product product6 = new Product("Arrow t-shirt", "Luca", "clothing", "Ouch. That looks painful. Wear it!", "$10", R.drawable.luca_shirt2, null);
+                Product product7 = new Product("Beautiful Thinking EP", "Civeta Dei", "music", "EP by Houston indie-rockers Civeta Dei", "$5", R.drawable.civetadei1, null);
+                Product product8 = new Product("Radiation single", "Mutant Love", "music", "Smokin' hot track by B/CS punks Mutant Love", "$1", R.drawable.mutantlove1, "radiation");
+                Product product9 = new Product("Full Grown single", "Bear on Bear", "music", "Smokin' hot track by ATX indie rockers Bear on Bear", "$1", R.drawable.bearonbear, null);
+                Product product10 = new Product("Monica album", "Odd Folks", "music", "Full length album by B/CS rockers Odd Folks", "$5", R.drawable.monica_resize, null);
 
+                helper.insertRow(product0);
                 helper.insertRow(product1);
                 helper.insertRow(product2);
                 helper.insertRow(product3);
@@ -148,11 +150,11 @@ public class MainActivity extends AppCompatActivity {
                 helper.insertRow(product10);
 
                 Band band1 = new Band("First Thought Worst Thought", "Indie-Rock", "Austin");
-                Band band2 = new Band("Luca", "Alternative", "Bryan College Station");
+                Band band2 = new Band("Luca", "Alternative", "Bryan College Station ");
                 Band band3 = new Band("Civeta Dei", "Indie-Rock", "Houston");
-                Band band4 = new Band("Mutant Love", "Punk", "Bryan College Station");
+                Band band4 = new Band("Mutant Love", "Punk", "Bryan College Station ");
                 Band band5 = new Band("Bear on Bear", "Alternative", "Austin");
-                Band band6 = new Band("Odd Folks", "Pop-punk", "Bryan College Station");
+                Band band6 = new Band("Odd Folks", "Pop-punk", "Bryan College Station ");
 
                 helper.insertRowBand(band1);
                 helper.insertRowBand(band2);

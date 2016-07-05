@@ -28,5 +28,17 @@
         android:layout_height="wrap_content"
         android:text="Add to cart"
         android:id="@+id/button"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/play"
+        android:text="Play sample clip"
+        android:visibility="invisible"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pause"
+        android:text="Pause"
+        android:visibility="invisible"/>
 
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Button;
 
 public class DetailActivity extends AppCompatActivity {
     public static final String EXTRA_PRODUCT = "product";
@@ -22,6 +23,7 @@ public class DetailActivity extends AppCompatActivity {
             //set the text in my fragment
             Product product = (Product) i.getSerializableExtra(NEW_EXTRA);
             Fragment newFragment = new DetailFragment();
+            Button playButton = (Button)findViewById(R.id.play);
 
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.detail_fragment, newFragment);
@@ -32,6 +34,7 @@ public class DetailActivity extends AppCompatActivity {
             ((DetailFragment) newFragment).setProductCost(product.price);
             ((DetailFragment) newFragment).setProductImage(product.imageId);
             ((DetailFragment) newFragment).setProduct(product);
+
         }
     }
 }

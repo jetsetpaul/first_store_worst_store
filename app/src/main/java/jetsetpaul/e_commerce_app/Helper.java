@@ -49,6 +49,7 @@ public class Helper extends SQLiteOpenHelper {
         public static final String COLUMN_DESCRIPTION = "description";
         public static final String COLUMN_PRICE = "price";
         public static final String COLUMN_IMAGE_ID = "image_id";
+        public static final String COLUMN_MEDIA = "media";
     }
 
     public static abstract class DataEntryBand implements BaseColumns {
@@ -66,7 +67,8 @@ public class Helper extends SQLiteOpenHelper {
             DataEntryProduct.COLUMN_CATEGORY + " TEXT, " +
             DataEntryProduct.COLUMN_DESCRIPTION + " TEXT, " +
             DataEntryProduct.COLUMN_PRICE + " TEXT, " +
-            DataEntryProduct.COLUMN_IMAGE_ID + " INTEGER" + ")";
+            DataEntryProduct.COLUMN_IMAGE_ID + " INTEGER, " +
+            DataEntryProduct.COLUMN_MEDIA + " TEXT" + ")";
 
     private static final String SQL_DELETE_ENTRIES_PRODUCT = "DROP TABLE IF EXISTS " +
             DataEntryProduct.TABLE_NAME;
@@ -90,6 +92,7 @@ public class Helper extends SQLiteOpenHelper {
         values.put(DataEntryProduct.COLUMN_DESCRIPTION, product.getDescription());
         values.put(DataEntryProduct.COLUMN_PRICE, product.getPrice());
         values.put(DataEntryProduct.COLUMN_IMAGE_ID, product.getImageId());
+        values.put(DataEntryProduct.COLUMN_MEDIA, product.getMedia());
 
         db.insertOrThrow(DataEntryProduct.TABLE_NAME, null, values);
     }
@@ -129,7 +132,8 @@ public class Helper extends SQLiteOpenHelper {
                     String description = cursor.getString(cursor.getColumnIndex(DataEntryProduct.COLUMN_DESCRIPTION));
                     String price = cursor.getString(cursor.getColumnIndex(DataEntryProduct.COLUMN_PRICE));
                     Integer imageId = cursor.getInt(cursor.getColumnIndex(DataEntryProduct.COLUMN_IMAGE_ID));
-                    productDetail.add(new Product(title, artist, category, description, price, imageId));
+                    String media = cursor.getString(cursor.getColumnIndex(DataEntryProduct.COLUMN_MEDIA));
+                    productDetail.add(new Product(title, artist, category, description, price, imageId, media));
 
                 } while (cursor.moveToNext());
             }
@@ -159,7 +163,8 @@ public class Helper extends SQLiteOpenHelper {
                     cursor.getString(cursor.getColumnIndex(DataEntryProduct.COLUMN_CATEGORY)),
                     cursor.getString(cursor.getColumnIndex(DataEntryProduct.COLUMN_DESCRIPTION)),
                     cursor.getString(cursor.getColumnIndex(DataEntryProduct.COLUMN_PRICE)),
-                    cursor.getInt(cursor.getColumnIndex(DataEntryProduct.COLUMN_IMAGE_ID))));
+                    cursor.getInt(cursor.getColumnIndex(DataEntryProduct.COLUMN_IMAGE_ID)),
+                    cursor.getString(cursor.getColumnIndex(DataEntryProduct.COLUMN_IMAGE_ID))));
             cursor.moveToNext();
         }
         cursor.close();
